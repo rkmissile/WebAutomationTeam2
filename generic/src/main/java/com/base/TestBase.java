@@ -2,8 +2,8 @@ package com.base;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
-import com.report.ExtentManager;
-import com.report.ExtentTestManager;
+import com.reports.ExtentManager;
+import com.reports.ExtentTestManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
