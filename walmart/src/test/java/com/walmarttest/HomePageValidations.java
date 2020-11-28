@@ -102,6 +102,7 @@ public class HomePageValidations extends TestBase {
         homePage.clickOnWalmartForBusinessButton();
 
     }
+
     @Test(enabled = false)
     public void validateUserBeAbleToClickOnViewOrderStatusButton() {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
