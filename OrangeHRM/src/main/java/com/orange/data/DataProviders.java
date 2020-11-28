@@ -11,7 +11,7 @@ public class DataProviders {
 
     @DataProvider(name = "credentials")
     public Object[][] getCredentials() {
-        return new Object[][]{{"testuser001", "testpass001"}, {"testuser002", "testpass002"}, {"testuser003", "testpass003"}};
+        return new Object[][]{{"Admin", "admin"}, {"aadmin", "admin123"}};
     }
 
 }

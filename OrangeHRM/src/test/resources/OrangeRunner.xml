@@ -4,17 +4,18 @@
 <suite name="Selenium Test Suite" parallel="false">
 
     <parameter name="browser" value="chrome"/>
-    <parameter name="url" value="https://www.ebay.com"/>
+    <parameter name="url" value="https://opensource-demo.orangehrmlive.com/index.php/auth/login"/>
     <parameter name="platform" value="windows"/>
     <parameter name="platformVersion" value="10"/>
 
-    <parameter name="cloud" value="true"/>
+    <parameter name="cloud" value="false"/>
     <parameter name="envName" value="saucelabs"/>
     <parameter name="browserVersion" value="86.0"/>
 
     <test name="Automation tests">
         <classes>
             <class name="com.orangetest.LoginValidation"/>
+            <class name="com.orangetest.MyInfoValidations"/>
         </classes>
     </test>
 </suite>

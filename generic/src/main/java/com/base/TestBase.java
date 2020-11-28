@@ -40,7 +40,7 @@ public class TestBase {
     public static String browserStackKey = "";
     //http:// + username + : + key + specific url for cloud
     public static String SAUCE_URL = "http://" + sauceUserName + ":" + sauceKey + "@ondemand.saucelabs.com:80/wd/hub";
-    public static String BROWERSTACK_URL = "https://" + browserStackUserName + ":" + browserStackKey + "@hub-cloud.browserstack.com/wd/hub";
+    public static String BROWSERSTACK_URL = "https://" + browserStackUserName + ":" + browserStackKey + "@hub-cloud.browserstack.com/wd/hub";
     private static Logger LOGGER = Logger.getLogger(TestBase.class);
 
     /**
@@ -54,12 +54,12 @@ public class TestBase {
      * @throws MalformedURLException
      * @Parameters - values are coming from the runner.xml file of the project modules
      */
-    @Parameters({"platform", "url", "browser", "cloud", "browserVersion", "envName"})
+    @Parameters({"platform","platformVersion", "url", "browser", "cloud", "browserVersion", "envName"})
     @BeforeMethod
-    public static WebDriver setupDriver(String platform, String url, String browser,
+    public static WebDriver setupDriver(String platform,String platformVersion, String url, String browser,
                                         boolean cloud, String browserVersion, String envName) throws MalformedURLException {
         if (cloud) {
-            driver = getCloudDriver(browser, browserVersion, platform, envName);
+            driver = getCloudDriver(browser, browserVersion, platform,platformVersion, envName);
         } else {
             driver = getLocalDriver(browser, platform);
         }
@@ -94,19 +94,31 @@ public class TestBase {
         return driver;
     }
 
-    public static WebDriver getCloudDriver(String browser, String browserVersion, String platform,
+    /**
+     * this method will create object of cloud webdriver>>
+     * @param browser
+     * @param browserVersion
+     * @param platform
+     * @param envName
+     * @return
+     * @throws MalformedURLException
+     */
+    public static WebDriver getCloudDriver(String browser, String browserVersion, String platform, String platformVersion,
                                            String envName) throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("os_version", "Catalina");
         desiredCapabilities.setCapability("resolution", "1920x1080");
         desiredCapabilities.setCapability("browser", browser);
         desiredCapabilities.setCapability("browser_version", browserVersion);
         desiredCapabilities.setCapability("os", platform);
+        desiredCapabilities.setCapability("os_version", platformVersion);
         desiredCapabilities.setCapability("name", "Sample Test");
+
         if (envName.equalsIgnoreCase("saucelabs")) {
             driver = new RemoteWebDriver(new URL(SAUCE_URL), desiredCapabilities);
+            LOGGER.info("Tests run on Sauce Lab");
         } else if (envName.equalsIgnoreCase("browserstack")) {
-            driver = new RemoteWebDriver(new URL(BROWERSTACK_URL), desiredCapabilities);
+            driver = new RemoteWebDriver(new URL(BROWSERSTACK_URL), desiredCapabilities);
+            LOGGER.info("Tests run on Browser Stack");
         }
         return driver;
     }
