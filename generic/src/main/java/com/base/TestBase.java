@@ -234,9 +234,10 @@ public class TestBase {
     @AfterSuite
     public void generateReport() {
         extent.close();
+
+
     }
     //reporting finish
-
 
     @AfterMethod
     public void cleanUp() {
@@ -246,3 +247,5 @@ public class TestBase {
     }
 
 }
+
+
