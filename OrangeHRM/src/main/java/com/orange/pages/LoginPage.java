@@ -1,11 +1,12 @@
 package com.orange.pages;
 
+import com.base.TestBase;
 import com.reports.ExtentTestManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.asserts.SoftAssert;
 
-public class LoginPage {
+public class LoginPage extends TestBase {
 
     @FindBy(xpath = "//input[@id='txtUsername']")
     private WebElement userName;
@@ -35,6 +36,16 @@ public class LoginPage {
         setUserName("Admin");
         setPassword("admin123");
         clickOnLoginButton();
+    }
+
+
+    public void navigateToPage(String URL){
+        setUserName("Admin");
+        setPassword("admin123");
+        clickOnLoginButton();
+
+        driver.get(URL);
+
     }
 
 
